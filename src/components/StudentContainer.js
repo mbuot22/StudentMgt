@@ -1,37 +1,90 @@
 import React from "react";
-import StudentList from './StudentList'
-import Header from './Header'
+import StudentList from './StudentList';
+import Header from './Header';
+
 
 class StudentContainer extends React.Component{
     state = {
+
         students: [
             {
-                Matric: 1,
-                Fullname: 'Olusare Adegbagi',
-                Graduated: false,
+                matric: 1,
+                fullname: 'Olusare Adegbagi',
+                graduated: false,
             },
 
             {
-                Matric: 2,
-                Fullname: 'Lateef Obinna',
-                Graduated: true, 
+                matric: 2,
+                fullname: 'Lateef Obinna',
+                graduated: true, 
             },
 
             {
-                Matric: 3,
-                Fullname: 'Jose Banks',
-                Graduated: true,
+                matric: 3,
+                fullname: 'Jose Banks',
+                graduated: true,
             },
 
             {
-                Matric: 4,
-                Fullname: 'Grace Etukumo',
-                Graduated: false,
-            }
+                matric: 4,
+                fullname: 'Grace Etukumo',
+                graduated: false,
+            },
+
+            {
+                matric: 5,
+                fullname: 'James Okon',
+                graduated: true,
+            },
+
+            {
+                matric: 6,
+                fullname: 'Sunday Egharevba',
+                graduated: true,
+            },
+
+            {
+                matric: 7,
+                fullname: 'Ojo Rasaki',
+                graduated: false,
+            },
         ],
 
         description: 'This is a student management app!'
     }
+    // handleChange = (matric, fullname) => {
+    //     console.log(`Student with matric ${matric} and ${fullname} clicked`)
+    // }
+
+    handleChange = (matric) => {
+        this.setState(prevState => ({
+            students: prevState.students.map( student => {
+                if(student.matric === matric){
+                    return{
+                        ...student,
+                        graduated: !student.graduated
+                    }
+                }
+                return student
+            }
+            )
+        }))
+    }
+
+    // delStudent = (matric) => {
+    //     console.log(`Student with matric ${matric} has been deleted`)
+    // }
+
+    delStudent = (matric) => {
+        this.setState({
+            students: [
+                ...this.state.students.filter(student => {
+                    return student.matric !== matric
+                })
+            ]
+        })
+    }
+    
     render(){
         return(
             // <>
@@ -52,7 +105,7 @@ class StudentContainer extends React.Component{
             
             <div>
                 <Header />
-                <StudentList students = {this.state.students}/>
+                <StudentList delStudentProps = {this.delStudent} handleChangeProps = {this.handleChange} descr = {this.state.description} students = {this.state.students}/>
                 
             </div>
         )

@@ -1,15 +1,19 @@
 import React from 'react'
 
-function Student() {
+class Student extends React.Component{
+
+render(){
   return (
     // <div>Student</div>
     <li><input 
             type='checkbox'
-            checked= {this.props.students.graduated} 
-            onChange={() => console.log('clicked')}
+            checked= {this.props.student.graduated} 
+            // onChange={() => this.props.handleChangeProps(this.props.student.matric)}
+            
         />
-    {this.props.Fullname}</li>
-  )
+    {this.props.student.fullname}<button onClick={() => this.props.delStudentProps(this.props.student.matric)}>Delete</button></li>
+   )
+ }
 }
 
 export default Student
