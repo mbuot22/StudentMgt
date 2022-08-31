@@ -2,6 +2,7 @@ import React from 'react'
 import Student from './Student'
 class StudentList extends React.Component{
   render(){
+    // const {graduated, matric, fullname} = this.props.student
     return (
            // <div>StudentList</div>
 //         <ul>

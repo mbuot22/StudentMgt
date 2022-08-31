@@ -1,53 +1,55 @@
 import React from "react";
 import StudentList from './StudentList';
 import Header from './Header';
-
+import StudentInput from "./StudentInput";
+import {v4 as uuidv4} from 'uuid'
+// import '../App.css'
 
 class StudentContainer extends React.Component{
     state = {
 
         students: [
-            {
-                matric: 1,
-                fullname: 'Olusare Adegbagi',
-                graduated: false,
-            },
+            // {
+            //     matric: 1,
+            //     fullname: 'Olusare Adegbagi',
+            //     graduated: false,
+            // },
 
-            {
-                matric: 2,
-                fullname: 'Lateef Obinna',
-                graduated: true, 
-            },
+            // {
+            //     matric: 2,
+            //     fullname: 'Lateef Obinna',
+            //     graduated: true, 
+            // },
 
-            {
-                matric: 3,
-                fullname: 'Jose Banks',
-                graduated: true,
-            },
+            // {
+            //     matric: 3,
+            //     fullname: 'Jose Banks',
+            //     graduated: true,
+            // },
 
-            {
-                matric: 4,
-                fullname: 'Grace Etukumo',
-                graduated: false,
-            },
+            // {
+            //     matric: 4,
+            //     fullname: 'Grace Etukumo',
+            //     graduated: false,
+            // },
 
-            {
-                matric: 5,
-                fullname: 'James Okon',
-                graduated: true,
-            },
+            // {
+            //     matric: 5,
+            //     fullname: 'James Okon',
+            //     graduated: true,
+            // },
 
-            {
-                matric: 6,
-                fullname: 'Sunday Egharevba',
-                graduated: true,
-            },
+            // {
+            //     matric: 6,
+            //     fullname: 'Sunday Egharevba',
+            //     graduated: true,
+            // },
 
-            {
-                matric: 7,
-                fullname: 'Ojo Rasaki',
-                graduated: false,
-            },
+            // {
+            //     matric: 7,
+            //     fullname: 'Ojo Rasaki',
+            //     graduated: false,
+            // },
         ],
 
         description: 'This is a student management app!'
@@ -75,6 +77,20 @@ class StudentContainer extends React.Component{
     //     console.log(`Student with matric ${matric} has been deleted`)
     // }
 
+    addStudent= (fullname) => {
+        // console.log('added!')
+        const newStudent= {
+            matric: uuidv4(),
+            fullname: fullname,
+            graduated: false
+        }
+        this.setState({
+            students: [
+                ...this.state.students, newStudent] 
+            })
+            }
+
+
     delStudent = (matric) => {
         this.setState({
             students: [
@@ -86,6 +102,7 @@ class StudentContainer extends React.Component{
     }
     
     render(){
+        // const {graduated, matric, fullname} = this.props.student
         return(
             // <>
             //     <h1>Hello from Torilo world!</h1>
@@ -103,10 +120,16 @@ class StudentContainer extends React.Component{
             //     }
             // </ul>
             
-            <div>
+            <div className="container">
+                <div className="inner">
                 <Header />
-                <StudentList delStudentProps = {this.delStudent} handleChangeProps = {this.handleChange} descr = {this.state.description} students = {this.state.students}/>
-                
+                <StudentInput addStudentProps = {this.addStudent} />
+                <StudentList 
+                    delStudentProps = {this.delStudent} 
+                    handleChangeProps = {this.handleChange} 
+                    descr = {this.state.description} 
+                    students = {this.state.students}/>
+                </div>
             </div>
         )
     }
