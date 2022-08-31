@@ -101,6 +101,17 @@ class StudentContainer extends React.Component{
         })
     }
     
+    setUpdate = (updatedName, matric) => {
+        this.setState({
+            students: this.state.students.map(student => {
+                if(student.matric === matric){
+                  student.fullname =  updatedName
+                }
+                return student
+        })
+        })
+    }
+
     render(){
         // const {graduated, matric, fullname} = this.props.student
         return(
@@ -128,7 +139,9 @@ class StudentContainer extends React.Component{
                     delStudentProps = {this.delStudent} 
                     handleChangeProps = {this.handleChange} 
                     descr = {this.state.description} 
-                    students = {this.state.students}/>
+                    students = {this.state.students}
+                    setUpdate = {this.setUpdate}/>
+                    
                 </div>
             </div>
         )

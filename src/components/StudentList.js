@@ -18,8 +18,13 @@ class StudentList extends React.Component{
 // }
          <ul>
             {this.props.students.map(student => (
-                <Student key={student.matric} student={student} handleChangeProps={this.props.handleChangeProps} delStudentProps={this.props.delStudentProps}/>
-                    ))}
+                <Student 
+                key={student.matric} 
+                student={student} 
+                handleChangeProps={this.props.handleChangeProps} 
+                delStudentProps={this.props.delStudentProps}
+                setUpdate={this.props.setUpdate}/>
+          ))}
         </ul>
        )
     }
