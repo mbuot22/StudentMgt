@@ -12,7 +12,14 @@ handleEditing = () => {
   this.setState({
     editing: true,
   })
+}
 
+handleUpdatedDone = (event) => {
+  if(event.key === 'Enter'){
+    this.setState({
+      editing: false
+    })
+  }
 }
 
 render(){
@@ -57,6 +64,7 @@ render(){
             e => {
             this.props.setUpdate(e.target.value, matric)
           }}
+          onKeyDown={this.handleUpdatedDone}
         />
     </li>
    )
